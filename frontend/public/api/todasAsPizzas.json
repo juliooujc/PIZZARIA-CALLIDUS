@@ -1,0 +1,17 @@
+[
+    {
+        "id": "9788575227268",
+        "nome": "Calabrosa",
+        "ingrediente": "Calabresa, cebola e queijo",
+        "tamanho": "",
+        "preco": "30"
+    },
+
+    {
+        "id": "9788575227145",
+        "nome": "Portugosa",
+        "ingrediente": "Presunto, queijo e papicra",
+        "tamanho": "",
+        "preco": "20"
+    }
+]

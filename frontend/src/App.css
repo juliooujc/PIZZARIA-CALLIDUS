@@ -1,42 +1,139 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+html {
+  font-size: 16px;
+  box-sizing: border-box;
 }
-
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font: 1rem sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 0.2em 0;
+}
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+  position: relative;
+  padding: 2.4em;
+  background: url(/imagens/logo.jpg) center no-repeat;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.logo span {
+  position: absolute;
+  top: -20000px;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.topo h1 {
+  width: 200px;
+  height: 50px;
+  margin: 0 auto;
 }
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.topo ul {
+  background: #c8e0e8;
+  border-bottom: 1px solid #cacaca;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.topo li {
+  display: inline-block;
+  border-right: 1px solid #999;
 }
-
+.topo li a {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+  display: block;
+  padding: 8px 20px;
+}
+.topo li a:hover {
+  color: #666;
+}
+.topo li:first-child a {
+  border-left: 1px solid #999;
+}
+.principal a {
+  color: #027399;
+  text-decoration: none;
+}
+.thumb img {
+  display: block;
+  width: 80px;
+}
+.topo,
+.rodape {
+  text-align: center;
+  background: #2a3030;
+  padding: 1px 0;
+}
+.topo {
+  margin-bottom: 4px;
+}
+.principal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background: #353b3b;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.principal h2 {
+  flex-basis: 100%;
+  font-size: 1em;
+  margin: 0;
+  padding: 6px 5px;
+  color: #fff;
+  background: #027399;
+}
+.principal h3 {
+  font-size: 1em;
+}
+.principal ol {
+  margin-top: 8px;
+}
 .card {
-  padding: 2em;
+  display: flex;
+  flex: 0 1 50%;
+  padding: 8px 0 10px 10px;
+  border-bottom: 1px solid #ccc;
 }
-
-.read-the-docs {
-  color: #888;
+.card h2 {
+  font-size: 16px;
+}
+.card p {
+  font-size: 14px;
+  margin: 0;
+}
+.thumb {
+  margin-right: 5px;
+}
+.detalhes {
+  display: flex;
+  flex-direction: column;
+}
+.rodape {
+  margin-top: 4px;
+}
+.pizza {
+  overflow: auto;
+  margin: 20px 0;
+}
+.pizza img {
+  display: block;
+  width: 180px;
+  float: left;
+  margin: 0 10px;
+}
+@media screen and (max-width: 600px) {
+  .principal {
+    flex-direction: column;
+  }
 }

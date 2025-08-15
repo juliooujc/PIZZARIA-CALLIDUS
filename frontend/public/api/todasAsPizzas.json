@@ -1,17 +1,102 @@
 [
     {
         "id": "9788575221396",
-        "nome": "Calabrosa",
-        "ingrediente": "Calabresa, cebola e queijo",
-        "tamanho": "",
-        "preco": "30"
+        "nome": "Calabresa",
+        "slug": "calabresa",
+        "ingrediente": "Calabresa, cebola e queijo mussarela",
+        "tamanho": "Grande",
+        "preco": 45.90,
+        "descricao": "Clássica pizza de calabresa com cebolas caramelizadas e queijo derretido",
+        "disponivel": true
     },
-
     {
         "id": "9788575221662",
-        "nome": "Portugosa",
-        "ingrediente": "Presunto, queijo e papicra",
-        "tamanho": "",
-        "preco": "20"
+        "nome": "Portuguesa",
+        "slug": "portuguesa",
+        "ingrediente": "Presunto, queijo, ovos, cebola, azeitonas e pimentão",
+        "tamanho": "Grande",
+        "preco": 49.90,
+        "descricao": "A tradicional pizza portuguesa com os melhores ingredientes",
+        "disponivel": true
+    },
+    {
+        "id": "9788575222454",
+        "nome": "Margherita",
+        "slug": "margherita",
+        "ingrediente": "Muçarela, tomate fresco e manjericão",
+        "tamanho": "Média",
+        "preco": 39.90,
+        "descricao": "Pizza italiana autêntica com ingredientes frescos",
+        "disponivel": true
+    },
+    {
+        "id": "9788575223789",
+        "nome": "Quatro Queijos",
+        "slug": "quatro-queijos",
+        "ingrediente": "Mussarela, provolone, parmesão e gorgonzola",
+        "tamanho": "Grande",
+        "preco": 55.90,
+        "descricao": "Combinação perfeita de quatro queijos especiais",
+        "disponivel": true
+    },
+    {
+        "id": "9788575224120",
+        "nome": "Frango com Catupiry",
+        "slug": "frango-catupiry",
+        "ingrediente": "Frango desfiado, catupiry e milho",
+        "tamanho": "Grande",
+        "preco": 52.90,
+        "descricao": "Cremosa pizza de frango com o autêntico catupiry",
+        "disponivel": true
+    },
+    {
+        "id": "9788575225332",
+        "nome": "Pepperoni",
+        "slug": "pepperoni",
+        "ingrediente": "Pepperoni e queijo mussarela",
+        "tamanho": "Grande",
+        "preco": 48.90,
+        "descricao": "Pizza com pepperoni importado e muito queijo",
+        "disponivel": true
+    },
+    {
+        "id": "9788575226124",
+        "nome": "Vegetariana",
+        "slug": "vegetariana",
+        "ingrediente": "Berinjela, abobrinha, pimentão, cebola e azeitonas",
+        "tamanho": "Média",
+        "preco": 44.90,
+        "descricao": "Pizza saudável com legumes frescos",
+        "disponivel": true
+    },
+    {
+        "id": "9788575227459",
+        "nome": "Napolitana",
+        "slug": "napolitana",
+        "ingrediente": "Muçarela, tomate, alho e anchovas",
+        "tamanho": "Média",
+        "preco": 47.90,
+        "descricao": "Sabor tradicional de Nápoles com um toque especial",
+        "disponivel": true
+    },
+    {
+        "id": "9788575228784",
+        "nome": "Bacon",
+        "slug": "bacon",
+        "ingrediente": "Bacon crocante e queijo mussarela",
+        "tamanho": "Grande",
+        "preco": 51.90,
+        "descricao": "Para os amantes de bacon, crocante e saboroso",
+        "disponivel": true
+    },
+    {
+        "id": "9788575229019",
+        "nome": "Doce de Leite",
+        "slug": "doce-leite",
+        "ingrediente": "Doce de leite caseiro e coco ralado",
+        "tamanho": "Pequena",
+        "preco": 35.90,
+        "descricao": "Sobremesa deliciosa em forma de pizza",
+        "disponivel": true
     }
 ]

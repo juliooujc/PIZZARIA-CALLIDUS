@@ -4,7 +4,7 @@
         "nome": "Calabresa",
         "slug": "calabresa",
         "ingrediente": "Calabresa, cebola e queijo mussarela",
-        "tamanho": "Grande",
+        "tamanho": "G",
         "preco": 45.90,
         "descricao": "Clássica pizza de calabresa com cebolas caramelizadas e queijo derretido",
         "disponivel": true
@@ -14,7 +14,7 @@
         "nome": "Portuguesa",
         "slug": "portuguesa",
         "ingrediente": "Presunto, queijo, ovos, cebola, azeitonas e pimentão",
-        "tamanho": "Grande",
+        "tamanho": "G",
         "preco": 49.90,
         "descricao": "A tradicional pizza portuguesa com os melhores ingredientes",
         "disponivel": true
@@ -24,7 +24,7 @@
         "nome": "Margherita",
         "slug": "margherita",
         "ingrediente": "Muçarela, tomate fresco e manjericão",
-        "tamanho": "Média",
+        "tamanho": "M",
         "preco": 39.90,
         "descricao": "Pizza italiana autêntica com ingredientes frescos",
         "disponivel": true
@@ -34,7 +34,7 @@
         "nome": "Quatro Queijos",
         "slug": "quatro-queijos",
         "ingrediente": "Mussarela, provolone, parmesão e gorgonzola",
-        "tamanho": "Grande",
+        "tamanho": "G",
         "preco": 55.90,
         "descricao": "Combinação perfeita de quatro queijos especiais",
         "disponivel": true
@@ -44,7 +44,7 @@
         "nome": "Frango com Catupiry",
         "slug": "frango-catupiry",
         "ingrediente": "Frango desfiado, catupiry e milho",
-        "tamanho": "Grande",
+        "tamanho": "G",
         "preco": 52.90,
         "descricao": "Cremosa pizza de frango com o autêntico catupiry",
         "disponivel": true
@@ -54,7 +54,7 @@
         "nome": "Pepperoni",
         "slug": "pepperoni",
         "ingrediente": "Pepperoni e queijo mussarela",
-        "tamanho": "Grande",
+        "tamanho": "G",
         "preco": 48.90,
         "descricao": "Pizza com pepperoni importado e muito queijo",
         "disponivel": true
@@ -64,7 +64,7 @@
         "nome": "Vegetariana",
         "slug": "vegetariana",
         "ingrediente": "Berinjela, abobrinha, pimentão, cebola e azeitonas",
-        "tamanho": "Média",
+        "tamanho": "M",
         "preco": 44.90,
         "descricao": "Pizza saudável com legumes frescos",
         "disponivel": true
@@ -74,7 +74,7 @@
         "nome": "Napolitana",
         "slug": "napolitana",
         "ingrediente": "Muçarela, tomate, alho e anchovas",
-        "tamanho": "Média",
+        "tamanho": "M",
         "preco": 47.90,
         "descricao": "Sabor tradicional de Nápoles com um toque especial",
         "disponivel": true
@@ -84,7 +84,7 @@
         "nome": "Bacon",
         "slug": "bacon",
         "ingrediente": "Bacon crocante e queijo mussarela",
-        "tamanho": "Grande",
+        "tamanho": "G",
         "preco": 51.90,
         "descricao": "Para os amantes de bacon, crocante e saboroso",
         "disponivel": true
@@ -94,7 +94,7 @@
         "nome": "Doce de Leite",
         "slug": "doce-leite",
         "ingrediente": "Doce de leite caseiro e coco ralado",
-        "tamanho": "Pequena",
+        "tamanho": "P",
         "preco": 35.90,
         "descricao": "Sobremesa deliciosa em forma de pizza",
         "disponivel": true

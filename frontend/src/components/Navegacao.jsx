@@ -26,14 +26,6 @@ const Navegacao = () => (
           Cardápio
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to='/notfound'
-          style={linkCorrente}          
-        >
-          NotFound
-        </NavLink>
-      </li>
     </ul>
   </nav>
 );

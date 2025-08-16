@@ -8,9 +8,9 @@ const Home = ({ pizzas }) => {
 
     return (
         <main className='principal'>
-            <h2>Principais pizzas do dia</h2>
+            <h2>Pizzas do dia</h2>
             {pizzas
-                .filter((_, index) => index < 6) // Mostra apenas as 6 primeiras
+                .filter((_, index) => index < 10) // Mostra apenas as 6 primeiras
                 .map((pizza) => (
                     <div className='card' key={pizza.id}>
                         <div className='thumb'>

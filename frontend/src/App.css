@@ -159,3 +159,46 @@ ul {
   align-items: center;
   gap: 5px;
 }
+
+.user-welcome {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #f8f9fa;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Ajustes na navbar */
+.nav ul {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.nav li {
+  list-style: none;
+}

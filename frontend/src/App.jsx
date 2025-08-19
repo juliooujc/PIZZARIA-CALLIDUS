@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useParams, BrowserRouter, Link } from "react-router-dom";
-import styled from 'styled-components';
 import { FaHome, FaShoppingCart } from 'react-icons/fa';
 import axios from "axios";
 import Pizza from "./components/Pizza";
@@ -31,18 +30,17 @@ const App = () => {
     const [erro, setErro] = useState(null);
     const [carrinhoItems, setCarrinhoItems] = useState([]);
     const totalCarrinho = carrinhoItems.reduce((sum, item) => sum + (item.preco * item.quantity), 0);
-    const addToCarrinho = (produto) => {
-      setCarrinhoItems(prev => {
+    const addToCarrinho = (produto) => { setCarrinhoItems(prev => {
         const itemExistente = prev.find(item => item.id === produto.id);
         if (itemExistente) {
-          return prev.map(item =>
+        return prev.map(item =>
             item.id === produto.id
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          );
+            ? { ...item, quantity: item.quantity + produto.quantity } // Soma a quantidade enviada
+            : item
+        );
         }
-        return [...prev, { ...produto, quantity: 1 }];
-      });
+        return [...prev, produto]; // Mantém a quantidade original
+    });
     };
 
     const removeFromCarrinho = (produtoId) => {

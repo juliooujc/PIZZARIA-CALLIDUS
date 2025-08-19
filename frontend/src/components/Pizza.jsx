@@ -17,7 +17,8 @@ const Pizza = ({ pizza, addToCarrinho }) => {
       imagem: `/imagens/capas/${pizza.id}.jpg`
     });
     setAdded(true);
-    setTimeout(() => setAdded(false), 2000); // Reseta após 2 segundos
+    setQuantity(1); // ← Resetar para 1 após adicionar
+    setTimeout(() => setAdded(false), 2000);
   };
 
   if (!pizza) {
@@ -79,7 +80,7 @@ const Pizza = ({ pizza, addToCarrinho }) => {
               disabled={added}
               className="button"
             >
-              {added ? '✔️ Adicionado!' : <><FaShoppingCart /> Adicionar ao Carrinho</>}
+              {added ? 'Pedido adicionado!' : <><FaShoppingCart /> Adicionar ao Carrinho</>}
             </button>
           </div>
         </div>

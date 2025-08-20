@@ -11,6 +11,7 @@ import Carrinho from "./components/Carrinho";
 import Pagamento from "./components/Pagamento";
 import Login from "./components/login/Login";
 import { AuthProvider, useAuth } from "./context/AuthContext";
+import { CarrinhoProvider, useCarrinho } from "./context/CarrinhoContext";
 import "./App.css"
 
 // Componente de navegação protegida
@@ -24,9 +25,21 @@ const ProtectedRoute = ({ children }) => {
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
+// Componente para redirecionar se já estiver logado
+const PublicRoute = ({ children }) => {
+  const { isAuthenticated, loading } = useAuth();
+  
+  if (loading) {
+    return <div className="loading">Carregando...</div>;
+  }
+  
+  return !isAuthenticated ? children : <Navigate to="/" />;
+};
+
+// Componente Nav separado
 const Nav = () => {
   const { isAuthenticated, user, logout } = useAuth();
-  const { carrinhoItems } = useCarrinho();
+  const { totalItens } = useCarrinho(); // Agora usa o hook do contexto
 
   return (
     <nav className="nav">
@@ -38,7 +51,7 @@ const Nav = () => {
         </li>
         <li>
           <Link to="/carrinho">
-            <FaShoppingCart /> Carrinho ({carrinhoItems.reduce((sum, item) => sum + item.quantity, 0)})
+            <FaShoppingCart /> Carrinho ({totalItens})
           </Link>
         </li>
         {isAuthenticated ? (
@@ -66,55 +79,22 @@ const Nav = () => {
   );
 };
 
-// Hook personalizado para o carrinho
-const useCarrinho = () => {
-  const [carrinhoItems, setCarrinhoItems] = useState([]);
-
-  const addToCarrinho = (produto) => {
-    setCarrinhoItems(prev => {
-      const itemExistente = prev.find(item => item.id === produto.id);
-      if (itemExistente) {
-        return prev.map(item =>
-          item.id === produto.id
-            ? { ...item, quantity: item.quantity + produto.quantity }
-            : item
-        );
-      }
-      return [...prev, produto];
-    });
-  };
-
-  const removeFromCarrinho = (produtoId) => {
-    setCarrinhoItems(prev => prev.filter(item => item.id !== produtoId));
-  };
-
-  const clearCarrinho = () => {
-    setCarrinhoItems([]);
-  };
-
-  return {
-    carrinhoItems,
-    addToCarrinho,
-    removeFromCarrinho,
-    clearCarrinho
-  };
-};
+// Remover o hook useCarrinho personalizado daqui
 
 const PizzaRouteHandler = ({ pizzas }) => {
   const { pizzaSlug } = useParams();
-  const { addToCarrinho } = useCarrinho();
+  const { addToCarrinho } = useCarrinho(); // Usa o contexto
   const pizza = pizzas.find(p => p.slug === pizzaSlug);
 
   if (!pizza) return <NotFound />;
-  return <Pizza pizza={pizza} addToCarrinho={addToCarrinho} />;
+  return <Pizza pizza={pizza} />;
 }
 
 const AppContent = () => {
   const [pizzas, setPizzas] = useState([]);
   const [erro, setErro] = useState(null);
-  const carrinho = useCarrinho();
-  
-  const totalCarrinho = carrinho.carrinhoItems.reduce((sum, item) => sum + (item.preco * item.quantity), 0);
+  const { isAuthenticated } = useAuth();
+  const { totalPreco, clearCarrinho, carrinhoItems } = useCarrinho(); // Usa o contexto
 
   useEffect(() => {
     const carregarPizzas = async () => {
@@ -142,31 +122,47 @@ const AppContent = () => {
   return (
     <div className="app">
       <BrowserRouter>
-        <Nav />
+        {isAuthenticated && <Nav />}
+        
         <Topo />
         <main className="principal">
           {erro && <p className="erro">{erro}</p>}
           <Routes>
-            <Route path="/" element={<Home pizzas={pizzas} addToCarrinho={carrinho.addToCarrinho} />} />
-            <Route path="/pizza/:pizzaSlug" element={<PizzaRouteHandler pizzas={pizzas} />} />
-            <Route path="/notfound" element={<NotFound />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={
+              isAuthenticated ? 
+                <Home pizzas={pizzas} /> : 
+                <Navigate to="/login" />
+            } />
             
-            {/* Rotas protegidas */}
+            <Route path="/pizza/:pizzaSlug" element={
+              <ProtectedRoute>
+                <PizzaRouteHandler pizzas={pizzas} />
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/notfound" element={<NotFound />} />
+            
+            <Route path="/login" element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            } />
+            
             <Route path="/pagamento" element={
               <ProtectedRoute>
                 <Pagamento 
-                  total={totalCarrinho} 
-                  clearCarrinho={carrinho.clearCarrinho}
+                  total={totalPreco} 
+                  clearCarrinho={clearCarrinho}
                 />
               </ProtectedRoute>
             } />
             
             <Route path="/carrinho" element={
-              <Carrinho 
-                items={carrinho.carrinhoItems} 
-                removeFromCarrinho={carrinho.removeFromCarrinho} 
-              />
+              <ProtectedRoute>
+                <Carrinho 
+                  items={carrinhoItems}
+                />
+              </ProtectedRoute>
             } />
             
             <Route path="*" element={<NotFound />} />
@@ -181,7 +177,9 @@ const AppContent = () => {
 const App = () => {
   return (
     <AuthProvider>
-      <AppContent />
+      <CarrinhoProvider>
+        <AppContent />
+      </CarrinhoProvider>
     </AuthProvider>
   );
 }

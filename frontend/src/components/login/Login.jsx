@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from './context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import './Login.css';
 
 const Login = () => {
@@ -27,7 +27,7 @@ const Login = () => {
     
     if (result.success) {
       // Navegação sem recarregar a página
-      navigate('/dashboard', { replace: true });
+      navigate('/', { replace: true });
     } else {
       setError(result.message);
     }

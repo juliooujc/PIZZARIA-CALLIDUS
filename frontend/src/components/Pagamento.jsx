@@ -1,5 +1,18 @@
-import { useState } from 'react';
-import { FaCreditCard, FaMoneyBillWave, FaQrcode, FaCheckCircle, FaSpinner, FaHome, FaExclamationTriangle } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { 
+  FaCreditCard, 
+  FaMoneyBillWave, 
+  FaQrcode, 
+  FaCheckCircle, 
+  FaSpinner, 
+  FaHome, 
+  FaExclamationTriangle,
+  FaLock,
+  FaShieldAlt,
+  FaTruck,
+  FaClock
+} from 'react-icons/fa';
 import './Pagamento.css';
 
 const validateCardNumber = (number) => /^\d{16}$/.test(number);
@@ -16,7 +29,8 @@ const getPaymentMethodName = (method) => {
   }
 };
 
-const Pagamento = ({ total }) => {
+const Pagamento = ({ total, clearCarrinho }) => {
+  const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState('credit');
   const [cardData, setCardData] = useState({
     number: '',
@@ -26,12 +40,34 @@ const Pagamento = ({ total }) => {
   });
   const [errors, setErrors] = useState({});
   const [paymentStatus, setPaymentStatus] = useState('pending');
-  const [orderNumber] = useState(Math.floor(Math.random() * 10000));
+  const [orderNumber] = useState(Math.floor(10000 + Math.random() * 90000));
+
+  const formatCurrency = (value) => {
+    return value.toFixed(2).replace('.', ',');
+  };
+
+  const formatCardNumber = (value) => {
+    return value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
+  };
+
+  const formatExpiry = (value) => {
+    return value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1/').substring(0, 5);
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setCardData(prev => ({ ...prev, [name]: value }));
-    // Limpa o erro quando o usuário começa a digitar
+    let formattedValue = value;
+
+    if (name === 'number') {
+      formattedValue = formatCardNumber(value).substring(0, 19);
+    } else if (name === 'expiry') {
+      formattedValue = formatExpiry(value);
+    } else if (name === 'cvv') {
+      formattedValue = value.replace(/\D/g, '').substring(0, 4);
+    }
+
+    setCardData(prev => ({ ...prev, [name]: formattedValue }));
+    
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -41,7 +77,7 @@ const Pagamento = ({ total }) => {
     const newErrors = {};
     
     if (paymentMethod === 'credit' || paymentMethod === 'debit') {
-      if (!validateCardNumber(cardData.number)) {
+      if (!validateCardNumber(cardData.number.replace(/\s/g, ''))) {
         newErrors.number = 'Número do cartão inválido (16 dígitos)';
       }
       if (!validateCardName(cardData.name)) {
@@ -61,29 +97,55 @@ const Pagamento = ({ total }) => {
 
   const handleSubmit = () => {
     if (!validateForm()) {
-      return; // Não prossegue se houver erros
+      return;
     }
     
     setPaymentStatus('processing');
     
     setTimeout(() => {
       setPaymentStatus('completed');
-    }, 2000);
+      clearCarrinho();
+    }, 3000);
+  };
+
+  const handleBackToMenu = () => {
+    navigate('/');
   };
 
   if (paymentStatus === 'processing') {
     return (
       <div className="payment-status-container processing">
         <div className="status-content">
-          <FaSpinner className="status-icon spinner" />
-          <h2>Pagamento em processamento</h2>
-          <p>Aguarde enquanto processamos seu pagamento...</p>
-          <div className="progress-bar">
-            <div className="progress"></div>
+          <div className="status-icon-container">
+            <FaSpinner className="status-icon spinner" />
           </div>
-          <div className="order-info">
-            <p>Valor: R$ {total.toFixed(2)}</p>
-            <p>Método: {getPaymentMethodName(paymentMethod)}</p>
+          <h2>Processando seu pagamento</h2>
+          <p>Estamos confirmando suas informações...</p>
+          
+          <div className="progress-container">
+            <div className="progress-bar">
+              <div className="progress-fill"></div>
+            </div>
+            <span className="progress-text">Processando...</span>
+          </div>
+
+          <div className="order-info-processing">
+            <div className="info-item">
+              <span className="info-label">Número do pedido:</span>
+              <span className="info-value">#{orderNumber}</span>
+            </div>
+            <div className="info-item">
+              <span className="info-label">Valor total:</span>
+              <span className="info-value">R$ {formatCurrency(total)}</span>
+            </div>
+            <div className="info-item">
+              <span className="info-label">Método:</span>
+              <span className="info-value">{getPaymentMethodName(paymentMethod)}</span>
+            </div>
+          </div>
+
+          <div className="security-message">
+            <FaLock /> Transação segura em andamento
           </div>
         </div>
       </div>
@@ -94,20 +156,49 @@ const Pagamento = ({ total }) => {
     return (
       <div className="payment-status-container success">
         <div className="status-content">
-          <FaCheckCircle className="status-icon success" />
-          <h2>Pagamento concluído!</h2>
-          <p className="success-message">Seu pedido está sendo preparado.</p>
-          <div className="order-details">
-            <p><strong>Número do pedido:</strong> #{orderNumber}</p>
-            <p><strong>Valor total:</strong> R$ {total.toFixed(2)}</p>
-            <p><strong>Método de pagamento:</strong> {getPaymentMethodName(paymentMethod)}</p>
+          <div className="status-icon-container">
+            <FaCheckCircle className="status-icon success" />
           </div>
+          <h2>Pagamento concluído com sucesso!</h2>
+          <p className="success-message">Seu pedido já está sendo preparado com carinho</p>
+          
+          <div className="order-details-success">
+            <div className="detail-card">
+              <h3>📦 Detalhes do Pedido</h3>
+              <div className="detail-item">
+                <span>Número do pedido:</span>
+                <strong>#{orderNumber}</strong>
+              </div>
+              <div className="detail-item">
+                <span>Valor total:</span>
+                <strong>R$ {formatCurrency(total)}</strong>
+              </div>
+              <div className="detail-item">
+                <span>Método de pagamento:</span>
+                <strong>{getPaymentMethodName(paymentMethod)}</strong>
+              </div>
+              <div className="detail-item">
+                <span>Status:</span>
+                <span className="status-badge confirmed">Confirmado</span>
+              </div>
+            </div>
+
+            <div className="delivery-info">
+              <FaTruck className="delivery-icon" />
+              <p>Seu pedido chegará em aproximadamente 45-60 minutos</p>
+            </div>
+          </div>
+
           <button 
-            className="back-to-menu"
-            onClick={() => window.location.href = '/'}
+            className="back-to-menu-btn"
+            onClick={handleBackToMenu}
           >
-            <FaHome /> Voltar ao cardápio
+            <FaHome /> Voltar ao Cardápio
           </button>
+
+          <div className="thank-you-message">
+            <p>Obrigado por escolher a Pizzaria Callidus! 🍕</p>
+          </div>
         </div>
       </div>
     );
@@ -115,138 +206,208 @@ const Pagamento = ({ total }) => {
 
   return (
     <div className="payment-container">
-      <h2>Finalizar Compra</h2>
-      <p className="payment-total">Total: R$ {total.toFixed(2)}</p>
-      
-      <h3 className="payment-methods-title">Método de Pagamento</h3>
-      
-      <div 
-        className={`payment-method ${paymentMethod === 'credit' ? 'active' : ''}`}
-        onClick={() => setPaymentMethod('credit')}
-      >
-        <FaCreditCard className="payment-icon" />
-        <div>
-          <h4>Cartão de Crédito</h4>
-          <p>Pgamento à vista</p>
+      <div className="payment-header">
+        <h1>Finalizar Compra</h1>
+        <div className="payment-total">
+          <span>Total a pagar:</span>
+          <span className="total-amount">R$ {formatCurrency(total)}</span>
         </div>
       </div>
-      
-      <div 
-        className={`payment-method ${paymentMethod === 'debit' ? 'active' : ''}`}
-        onClick={() => setPaymentMethod('debit')}
-      >
-        <FaMoneyBillWave className="payment-icon" />
-        <div>
-          <h4>Cartão de Débito</h4>
-          <p>Pagamento à vista</p>
+
+      <div className="payment-content">
+        {/* Security Badges */}
+        <div className="security-badges">
+          <div className="security-item">
+            <FaLock />
+            <span>Pagamento seguro</span>
+          </div>
+          <div className="security-item">
+            <FaShieldAlt />
+            <span>Dados criptografados</span>
+          </div>
+          <div className="security-item">
+            <FaClock />
+            <span>Processamento rápido</span>
+          </div>
         </div>
-      </div>
-      
-      <div 
-        className={`payment-method ${paymentMethod === 'pix' ? 'active' : ''}`}
-        onClick={() => setPaymentMethod('pix')}
-      >
-        <FaQrcode className="payment-icon" />
-        <div>
-          <h4>PIX</h4>
-          <p>Pagamento instantâneo</p>
-        </div>
-      </div>
-      
-      {(paymentMethod === 'credit' || paymentMethod === 'debit') && (
-        <div className="card-data-container">
-          <h4>Dados do Cartão</h4>
-          <div className="card-inputs">
-            <div className="input-group">
-              <input
-                type="text"
-                placeholder="Número do Cartão (16 dígitos)"
-                name="number"
-                value={cardData.number}
-                onChange={handleInputChange}
-                className={`card-input ${errors.number ? 'error' : ''}`}
-                maxLength="16"
-              />
-              {errors.number && (
-                <div className="error-message">
-                  <FaExclamationTriangle /> {errors.number}
-                </div>
-              )}
+
+        {/* Payment Methods */}
+        <div className="payment-methods-section">
+          <h2>Escolha como pagar</h2>
+          
+          <div className="payment-methods-grid">
+            <div 
+              className={`payment-method-card ${paymentMethod === 'credit' ? 'active' : ''}`}
+              onClick={() => setPaymentMethod('credit')}
+            >
+              <div className="method-icon">
+                <FaCreditCard />
+              </div>
+              <div className="method-info">
+                <h3>Cartão de Crédito</h3>
+                <p>Parcelamento em até 12x</p>
+              </div>
+              <div className="method-check"></div>
             </div>
-            
-            <div className="input-group">
-              <input
-                type="text"
-                placeholder="Nome no Cartão"
-                name="name"
-                value={cardData.name}
-                onChange={handleInputChange}
-                className={`card-input ${errors.name ? 'error' : ''}`}
-              />
-              {errors.name && (
-                <div className="error-message">
-                  <FaExclamationTriangle /> {errors.name}
-                </div>
-              )}
+
+            <div 
+              className={`payment-method-card ${paymentMethod === 'debit' ? 'active' : ''}`}
+              onClick={() => setPaymentMethod('debit')}
+            >
+              <div className="method-icon">
+                <FaMoneyBillWave />
+              </div>
+              <div className="method-info">
+                <h3>Cartão de Débito</h3>
+                <p>Pagamento à vista</p>
+              </div>
+              <div className="method-check"></div>
             </div>
+
+            <div 
+              className={`payment-method-card ${paymentMethod === 'pix' ? 'active' : ''}`}
+              onClick={() => setPaymentMethod('pix')}
+            >
+              <div className="method-icon">
+                <FaQrcode />
+              </div>
+              <div className="method-info">
+                <h3>PIX</h3>
+                <p>Pagamento instantâneo</p>
+              </div>
+              <div className="method-check"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Card Form */}
+        {(paymentMethod === 'credit' || paymentMethod === 'debit') && (
+          <div className="card-form-section">
+            <h3>Dados do Cartão</h3>
             
-            <div className="card-group">
-              <div className="input-group">
+            <div className="card-form">
+              <div className="form-group">
+                <label>Número do Cartão</label>
                 <input
                   type="text"
-                  placeholder="Validade (MM/AA)"
-                  name="expiry"
-                  value={cardData.expiry}
+                  placeholder="0000 0000 0000 0000"
+                  name="number"
+                  value={cardData.number}
                   onChange={handleInputChange}
-                  className={`card-input small ${errors.expiry ? 'error' : ''}`}
-                  maxLength="5"
+                  className={`form-input ${errors.number ? 'error' : ''}`}
+                  maxLength="19"
                 />
-                {errors.expiry && (
+                {errors.number && (
                   <div className="error-message">
-                    <FaExclamationTriangle /> {errors.expiry}
+                    <FaExclamationTriangle /> {errors.number}
                   </div>
                 )}
+              </div>
+
+              <div className="form-group">
+                <label>Nome no Cartão</label>
+                <input
+                  type="text"
+                  placeholder="Como está no cartão"
+                  name="name"
+                  value={cardData.name}
+                  onChange={handleInputChange}
+                  className={`form-input ${errors.name ? 'error' : ''}`}
+                />
+                {errors.name && (
+                  <div className="error-message">
+                    <FaExclamationTriangle /> {errors.name}
+                  </div>
+                )}
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Validade</label>
+                  <input
+                    type="text"
+                    placeholder="MM/AA"
+                    name="expiry"
+                    value={cardData.expiry}
+                    onChange={handleInputChange}
+                    className={`form-input small ${errors.expiry ? 'error' : ''}`}
+                    maxLength="5"
+                  />
+                  {errors.expiry && (
+                    <div className="error-message">
+                      <FaExclamationTriangle /> {errors.expiry}
+                    </div>
+                  )}
+                </div>
+
+                <div className="form-group">
+                  <label>CVV</label>
+                  <input
+                    type="text"
+                    placeholder="123"
+                    name="cvv"
+                    value={cardData.cvv}
+                    onChange={handleInputChange}
+                    className={`form-input small ${errors.cvv ? 'error' : ''}`}
+                    maxLength="4"
+                  />
+                  {errors.cvv && (
+                    <div className="error-message">
+                      <FaExclamationTriangle /> {errors.cvv}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* PIX Section */}
+        {paymentMethod === 'pix' && (
+          <div className="pix-section">
+            <h3>Pagamento via PIX</h3>
+            
+            <div className="pix-container">
+              <div className="pix-qr-code">
+                <FaQrcode className="pix-icon" />
+                <div className="pix-amount">
+                  <span>Valor: R$ {formatCurrency(total)}</span>
+                </div>
               </div>
               
-              <div className="input-group">
-                <input
-                  type="text"
-                  placeholder="CVV"
-                  name="cvv"
-                  value={cardData.cvv}
-                  onChange={handleInputChange}
-                  className={`card-input small ${errors.cvv ? 'error' : ''}`}
-                  maxLength="4"
-                />
-                {errors.cvv && (
-                  <div className="error-message">
-                    <FaExclamationTriangle /> {errors.cvv}
-                  </div>
-                )}
+              <div className="pix-instructions">
+                <h4>Como pagar:</h4>
+                <ol>
+                  <li>Abra o app do seu banco</li>
+                  <li>Escaneie o código QR acima</li>
+                  <li>Confirme o pagamento</li>
+                  <li>Pronto! Seu pedido será liberado</li>
+                </ol>
+              </div>
+
+              <div className="pix-info">
+                <p>⏰ Código válido por 30 minutos</p>
+                <p>✅ Pagamento instantâneo</p>
+                <p>🎉 5% de desconto no PIX</p>
               </div>
             </div>
           </div>
+        )}
+
+        {/* Submit Button */}
+        <button 
+          className="payment-submit-btn"
+          onClick={handleSubmit}
+        >
+          {paymentMethod === 'pix' ? 'Já efetuei o pagamento PIX' : 'Finalizar Pagamento'}
+        </button>
+
+        {/* Additional Security */}
+        <div className="additional-security">
+          <FaShieldAlt className="security-shield" />
+          <p>Seus dados estão protegidos com criptografia de ponta</p>
         </div>
-      )}
-      
-      {paymentMethod === 'pix' && (
-        <div className="pix-container">
-          <h4>Pague com PIX</h4>
-          <div className="pix-qrcode">
-            <FaQrcode className="pix-icon" />
-            <p>Chave PIX: 123.456.789-09</p>
-            <p>Valor: R$ {total.toFixed(2)}</p>
-          </div>
-          <p className="pix-expiry">O código PIX expira em 30 minutos</p>
-        </div>
-      )}
-      
-      <button 
-        className="payment-submit"
-        onClick={handleSubmit}
-      >
-        {paymentMethod === 'pix' ? 'Verificar' : 'Finalizar Pagamento'}
-      </button>
+      </div>
     </div>
   );
 };

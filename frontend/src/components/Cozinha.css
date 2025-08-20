@@ -1,0 +1,341 @@
+.cozinha-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.cozinha-header {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cozinha-title {
+  color: #e74c3c;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cozinha-stats {
+  display: flex;
+  gap: 20px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 10px 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* Filtros */
+.filtros-section {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.filtro-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filtro-btn {
+  padding: 10px 20px;
+  border: 2px solid #dee2e6;
+  background: white;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.filtro-btn.active {
+  background: #e74c3c;
+  color: white;
+  border-color: #e74c3c;
+}
+
+.filtro-btn:hover {
+  border-color: #e74c3c;
+}
+
+/* Pedidos */
+.pedidos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.pedido-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-left: 4px solid #e74c3c;
+}
+
+.pedido-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.pedido-info h3 {
+  margin: 0 0 5px 0;
+  color: #2c3e50;
+}
+
+.pedido-tempo {
+  color: #e74c3c;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+}
+
+.pedido-data {
+  color: #6c757d;
+  font-size: 0.8rem;
+}
+
+.pedido-tipo {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.tipo-mesa {
+  background: #d4edda;
+  color: #155724;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+
+.tipo-delivery {
+  background: #cce5ff;
+  color: #004085;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+
+.pedido-resumo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 5px;
+}
+
+.total-pedido {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.itens-count {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.pedido-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.detalhes-btn, .pronto-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.detalhes-btn {
+  background: #6c757d;
+  color: white;
+}
+
+.detalhes-btn:hover {
+  background: #5a6268;
+}
+
+.pronto-btn {
+  background: #28a745;
+  color: white;
+}
+
+.pronto-btn:hover:not(:disabled) {
+  background: #218838;
+}
+
+.pronto-btn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+/* Detalhes do pedido */
+.pedido-detalhes {
+  border-top: 1px solid #dee2e6;
+  padding-top: 15px;
+}
+
+.pedido-detalhes h4 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.itens-lista {
+  margin-bottom: 15px;
+}
+
+.item-detalhe {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.item-quantity {
+  font-weight: bold;
+  color: #e74c3c;
+  min-width: 30px;
+}
+
+.item-nome {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.item-subtotal {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.endereco-entrega, .mesa-info {
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.endereco-entrega h4, .mesa-info h4 {
+  margin: 0 0 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Estados vazios */
+.empty-cozinha {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.empty-cozinha-icon {
+  font-size: 4rem;
+  color: #dee2e6;
+  margin-bottom: 20px;
+}
+
+.empty-cozinha h2 {
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+.empty-cozinha p {
+  color: #6c757d;
+}
+
+/* Footer */
+.cozinha-footer {
+  margin-top: 30px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.resumo-stats {
+  display: flex;
+  justify-content: space-around;
+  color: #6c757d;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .cozinha-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .cozinha-stats {
+    justify-content: center;
+  }
+  
+  .pedidos-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pedido-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .pedido-actions {
+    flex-direction: column;
+  }
+  
+  .resumo-stats {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}

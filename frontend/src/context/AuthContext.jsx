@@ -2,14 +2,24 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
 
-// Mock function movida para fora do componente
+// Mock function simplificada
 const mockLogin = (email, password) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // Dados mockados
+      // Dados mockados simples - apenas usuário comum
       const users = [
-        { id: 1, email: 'usuario@email.com', password: 'senha123', name: 'Usuário Teste' },
-        { id: 2, email: 'admin@email.com', password: 'admin123', name: 'Administrador' }
+        { 
+          id: 1, 
+          email: 'usuario@email.com', 
+          password: 'senha123', 
+          name: 'Usuário Teste'
+        },
+        { 
+          id: 2, 
+          email: 'admin@email.com', 
+          password: 'admin123', 
+          name: 'Administrador'
+        }
       ];
 
       const user = users.find(u => u.email === email && u.password === password);
@@ -18,7 +28,11 @@ const mockLogin = (email, password) => {
         resolve({
           success: true,
           token: 'mock-jwt-token-' + user.id,
-          user: { id: user.id, email: user.email, name: user.name }
+          user: { 
+            id: user.id, 
+            email: user.email, 
+            name: user.name
+          }
         });
       } else {
         reject(new Error('Email ou senha inválidos'));
@@ -27,7 +41,7 @@ const mockLogin = (email, password) => {
   });
 };
 
-// Hook personalizado exportado separadamente
+// Hook personalizado
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -101,5 +115,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Exportação padrão apenas do Provider para manter a regra
 export default AuthProvider;

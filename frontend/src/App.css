@@ -528,3 +528,22 @@ a:hover {
     color: #bdc3c7;
   }
 }
+
+/* Estilos para o link da cozinha */
+.nav ul li a[href="/cozinha"] {
+  background: #e74c3c;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.nav ul li a[href="/cozinha"]:hover {
+  background: #c0392b;
+}
+
+/* Estilo para mostrar o role do usuário */
+.user-welcome {
+  font-weight: bold;
+  color: #2c3e50;
+}

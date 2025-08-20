@@ -6,7 +6,6 @@ import './Home.css';
 
 const Home = ({ pizzas }) => {
   const navigate = useNavigate();
-  const { addToCarrinho } = useCarrinho();
 
   if (!pizzas || !Array.isArray(pizzas)) {
     return (
@@ -18,24 +17,11 @@ const Home = ({ pizzas }) => {
       </main>
     );
   }
-
-  const handleAddToCarrinho = (pizza, e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    addToCarrinho({
-      id: pizza.id,
-      nome: pizza.nome,
-      preco: pizza.preco,
-      quantity: 1,
-      imagem: `/imagens/capas/${pizza.id}.jpg`
-    });
-  };
-
   const handlePizzaClick = (pizzaSlug) => {
     navigate(`/pizza/${pizzaSlug}`);
   };
 
-  const pizzasDestaque = pizzas.slice(0, 8);
+  const pizzasDestaque = pizzas.slice(0, 10);
 
   return (
     <main className='home-container'>
@@ -44,16 +30,6 @@ const Home = ({ pizzas }) => {
         <div className="hero-content">
           <h1>Pizzaria Callidus</h1>
           <p>Sabores autênticos, entregas rápidas</p>
-          <div className="hero-stats">
-            <div className="stat">
-              <FaFire />
-              <span>+{pizzas.length} sabores</span>
-            </div>
-            <div className="stat">
-              <FaStar />
-              <span>4.8 ⭐</span>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -91,31 +67,10 @@ const Home = ({ pizzas }) => {
                   <span className="pizza-price">
                     R$ {pizza.preco.toFixed(2).replace('.', ',')}
                   </span>
-                  
-                  <button 
-                    className="add-to-cart-btn"
-                    onClick={(e) => handleAddToCarrinho(pizza, e)}
-                  >
-                    <FaShoppingCart />
-                  </button>
                 </div>
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* CTA Minimalista */}
-      <section className="cta-section">
-        <div className="cta-content">
-          <h2>Pronto para pedir?</h2>
-          <p>Explore todo o nosso cardápio de sabores</p>
-          <button 
-            className="cta-button"
-            onClick={() => navigate('/')}
-          >
-            Ver Cardápio Completo
-          </button>
         </div>
       </section>
     </main>

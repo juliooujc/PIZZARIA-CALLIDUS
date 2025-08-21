@@ -76,12 +76,6 @@ const Login = () => {
             {loading ? 'Entrando...' : 'Entrar'}
           </button>
         </form>
-
-        <div className="login-demo">
-          <p>Dados para teste:</p>
-          <p>Email: usuario@email.com | Senha: senha123</p>
-          <p>Email: admin@email.com | Senha: admin123</p>
-        </div>
       </div>
     </div>
   );

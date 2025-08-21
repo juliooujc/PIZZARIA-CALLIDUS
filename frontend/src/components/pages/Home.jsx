@@ -1,7 +1,5 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-import { FaShoppingCart, FaStar, FaFire } from 'react-icons/fa';
-import { useCarrinho } from '../../context/CarrinhoContext';
 import './Home.css';
 
 const Home = ({ pizzas }) => {
@@ -25,21 +23,14 @@ const Home = ({ pizzas }) => {
 
   return (
     <main className='home-container'>
-      {/* Hero Section Minimalista */}
       <section className="hero-section">
         <div className="hero-content">
-          <h1>Pizzaria Callidus</h1>
-          <p>Sabores autênticos, entregas rápidas</p>
+          <h1>Pizzas do dia</h1>
+          <p>Saborosas e irresistíveis</p>
         </div>
       </section>
-
-      {/* Pizzas em Destaque */}
       <section className="pizzas-section">
-        <div className="section-header">
-          <h2>Pizzas em Destaque</h2>
-          <p>Nossas especialidades mais pedidas</p>
-        </div>
-        
+
         <div className="pizzas-grid">
           {pizzasDestaque.map((pizza) => (
             <div 

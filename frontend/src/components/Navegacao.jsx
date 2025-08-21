@@ -1,4 +1,3 @@
-// components/Navegacao.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -32,7 +31,6 @@ const Navegacao = () => {
           </Link>
         </li>
         
-        {/* Links para Cozinha e Entregas - todos os usuários autenticados podem acessar */}
         {isAuthenticated && (
           <>
             <li>
@@ -46,14 +44,6 @@ const Navegacao = () => {
               </Link>
             </li>
             
-            {/* Link para Administração - apenas para admin */}
-            {user?.role === 'admin' && (
-              <li>
-                <Link to="/administracao">
-                  <FaUserCog /> Administração
-                </Link>
-              </li>
-            )}
           </>
         )}
         

@@ -48,7 +48,6 @@ const Pizza = ({ pizza }) => {
 
   return (
     <main className='principal'>
-      {/* Breadcrumb */}
       <div className="breadcrumb">
         <button 
           onClick={() => navigate('/')}
@@ -61,7 +60,6 @@ const Pizza = ({ pizza }) => {
       </div>
 
       <div className='pizza-detail-container'>
-        {/* Pizza Image Section */}
         <div className='pizza-image-section'>
           <div className='pizza-image-wrapper'>
             <img
@@ -80,7 +78,6 @@ const Pizza = ({ pizza }) => {
           </div>
         </div>
 
-        {/* Pizza Info Section */}
         <div className='pizza-info-section'>
           <div className='pizza-header'>
             <h1 className='pizza-title'>{pizza.nome}</h1>
@@ -107,7 +104,6 @@ const Pizza = ({ pizza }) => {
             <p>{pizza.descricao}</p>
           </div>
 
-          {/* Ingredients */}
           <div className='ingredients-section'>
             <h3>🍅 Ingredientes</h3>
             <div className='ingredients-grid'>
@@ -119,7 +115,6 @@ const Pizza = ({ pizza }) => {
             </div>
           </div>
 
-          {/* Order Section */}
           <div className='order-section'>
             <h3>🛒 Faça seu pedido</h3>
             
@@ -170,7 +165,6 @@ const Pizza = ({ pizza }) => {
             </button>
           </div>
 
-          {/* Nutritional Info (opcional) */}
           {pizza.informacoesNutricionais && (
             <div className='nutritional-info'>
               <h3>📊 Informações Nutricionais</h3>
@@ -184,17 +178,6 @@ const Pizza = ({ pizza }) => {
               </div>
             </div>
           )}
-        </div>
-      </div>
-
-      {/* Recommended Pizzas Section (opcional) */}
-      <div className="recommended-section">
-        <h2>🍕 Você também pode gostar</h2>
-        <div className="recommended-grid">
-          {/* Aqui você pode adicionar pizzas recomendadas */}
-          <div className="recommended-placeholder">
-            <p>Carregando recomendações...</p>
-          </div>
         </div>
       </div>
     </main>

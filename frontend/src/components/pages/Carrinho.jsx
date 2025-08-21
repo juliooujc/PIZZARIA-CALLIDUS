@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaTrash, FaShoppingCart, FaCreditCard, FaSpinner, FaPlus, FaMinus, FaArrowLeft, FaUtensils, FaHome } from 'react-icons/fa';
+import { FaTrash, FaShoppingCart, FaSpinner, FaPlus, FaMinus, FaArrowLeft, FaUtensils, FaHome } from 'react-icons/fa';
 import { useCarrinho } from '../../context/CarrinhoContext';
 import './Carrinho.css';
 
@@ -165,7 +165,6 @@ const Carrinho = () => {
 
   return (
     <div className="carrinho-container">
-      {/* Header */}
       <div className="carrinho-header">
         <button 
           onClick={handleContinueShopping}
@@ -202,7 +201,6 @@ const Carrinho = () => {
         </div>
       ) : (
         <div className="carrinho-content">
-          {/* Tipo de Entrega */}
           <div className="entrega-section">
             <h3>Tipo de Entrega</h3>
             <div className="entrega-options">
@@ -272,8 +270,6 @@ const Carrinho = () => {
               </div>
             )}
           </div>
-
-          {/* Itens da Comanda */}
           <div className="comanda-items">
             <h3>Itens da Comanda</h3>
             {carrinhoItems.map(item => (
@@ -286,8 +282,6 @@ const Carrinho = () => {
               />
             ))}
           </div>
-
-          {/* Resumo da Comanda */}
           <div className="comanda-summary">
             <div className="summary-card">
               <h3 className="summary-title">Resumo da Comanda</h3>

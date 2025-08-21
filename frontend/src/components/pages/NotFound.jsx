@@ -68,7 +68,7 @@ const NotFound = () => {
         <div className="not-found-contact">
           <p>Precisa de ajuda?</p>
           <a href="tel:+551199999999" className="contact-link">
-            📞 (11) 9999-9999
+            📞 (92) 9999-9999
           </a>
           <a href="mailto:contato@pizzaria.com" className="contact-link">
             ✉️ contato@pizzaria.com

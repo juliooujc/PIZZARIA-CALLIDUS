@@ -37,69 +37,8 @@ const PublicRoute = ({ children }) => {
   return !isAuthenticated ? children : <Navigate to="/" />;
 };
 
-// Componente Nav separado
-const Nav = () => {
-  const { isAuthenticated, user, logout } = useAuth();
-  const { totalItens } = useCarrinho();
-
-  return (
-    <nav className="nav">
-      <ul>
-        <li>
-          <Link to="/">
-            <FaHome /> Cardápio
-          </Link>
-        </li>
-        <li>
-          <Link to="/carrinho">
-            <FaShoppingCart /> Carrinho ({totalItens})
-          </Link>
-        </li>
-        
-        {/* Links para Cozinha e Entregas - todos os usuários autenticados podem acessar */}
-        {isAuthenticated && (
-          <>
-            <li>
-              <Link to="/cozinha">
-                <FaUtensils /> Cozinha
-              </Link>
-            </li>
-            <li>
-              <Link to="/entregas">
-                <FaMotorcycle /> Entregas
-              </Link>
-            </li>
-          </>
-        )}
-        
-        {isAuthenticated ? (
-          <>
-            <li>
-              <span className="user-welcome">
-                <FaUser /> Olá, {user?.name}
-              </span>
-            </li>
-            <li>
-              <button onClick={logout} className="logout-btn">
-                <FaSignOutAlt /> Sair
-              </button>
-            </li>
-          </>
-        ) : (
-          <li>
-            <Link to="/login">
-              <FaUser /> Entrar
-            </Link>
-          </li>
-        )}
-      </ul>
-    </nav>
-  );
-};
-
 const PizzaRouteHandler = ({ pizzas }) => {
   const { pizzaSlug } = useParams();
-  const { addToCarrinho } = useCarrinho();
   const pizza = pizzas.find(p => p.slug === pizzaSlug);
 
   if (!pizza) return <NotFound />;
@@ -110,7 +49,7 @@ const AppContent = () => {
   const [pizzas, setPizzas] = useState([]);
   const [erro, setErro] = useState(null);
   const { isAuthenticated } = useAuth();
-  const { totalPreco, clearCarrinho, carrinhoItems } = useCarrinho();
+  const { carrinhoItems } = useCarrinho();
 
   useEffect(() => {
     const carregarPizzas = async () => {
@@ -138,7 +77,6 @@ const AppContent = () => {
   return (
     <div className="app">
       <BrowserRouter>
-        {isAuthenticated && <Nav />}
         
         <Topo />
         <main className="principal">

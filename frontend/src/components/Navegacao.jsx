@@ -1,34 +1,86 @@
-// Navegacao.js
-import React from "react";
-import { NavLink } from "react-router-dom";
+// components/Navegacao.jsx
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { 
+  FaHome, 
+  FaShoppingCart, 
+  FaUser, 
+  FaSignOutAlt, 
+  FaUtensils, 
+  FaMotorcycle, 
+  FaUserCog 
+} from 'react-icons/fa';
+import { useAuth } from '../context/AuthContext';
+import { useCarrinho } from '../context/CarrinhoContext';
+import './Navegacao.css';
 
-const linkCorrente =({isActive}) => ({
-  color:isActive ? "#027399" : "inherit",
-  fontWeight: isActive ? "bold" : "normal",
-});
+const Navegacao = () => {
+  const { isAuthenticated, user, logout } = useAuth();
+  const { totalItens } = useCarrinho();
 
-const Navegacao = () => (
-  <nav aria-label="Navegação principal">
-    <ul style={{
-      listStyle: "none",
-      padding:0,
-      display: "flex",
-      gap: "1rem",
-      margin: 0
-    }}>
-      <li>
-        <NavLink
-          to='/'
-          style={linkCorrente}
-          end
-          aria-current='page'
-        >
-          Cardápio
-        </NavLink>
-      </li>
-    </ul>
-  </nav>
-);
-
+  return (
+    <nav className="nav">
+      <ul>
+        <li>
+          <Link to="/">
+            <FaHome /> Cardápio
+          </Link>
+        </li>
+        <li>
+          <Link to="/carrinho">
+            <FaShoppingCart /> Carrinho ({totalItens})
+          </Link>
+        </li>
+        
+        {/* Links para Cozinha e Entregas - todos os usuários autenticados podem acessar */}
+        {isAuthenticated && (
+          <>
+            <li>
+              <Link to="/cozinha">
+                <FaUtensils /> Cozinha
+              </Link>
+            </li>
+            <li>
+              <Link to="/entregas">
+                <FaMotorcycle /> Entregas
+              </Link>
+            </li>
+            
+            {/* Link para Administração - apenas para admin */}
+            {user?.role === 'admin' && (
+              <li>
+                <Link to="/administracao">
+                  <FaUserCog /> Administração
+                </Link>
+              </li>
+            )}
+          </>
+        )}
+        
+        {isAuthenticated ? (
+          <>
+            <li>
+              <span className="user-welcome">
+                <FaUser /> Olá, {user?.name}
+                {user?.role === 'admin' && ' (Admin)'}
+              </span>
+            </li>
+            <li>
+              <button onClick={logout} className="logout-btn">
+                <FaSignOutAlt /> Sair
+              </button>
+            </li>
+          </>
+        ) : (
+          <li>
+            <Link to="/login">
+              <FaUser /> Entrar
+            </Link>
+          </li>
+        )}
+      </ul>
+    </nav>
+  );
+};
 
 export default Navegacao;

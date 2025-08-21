@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes, useParams, BrowserRouter, Link, Navigate } from "react-router-dom";
 import { FaHome, FaShoppingCart, FaUser, FaSignOutAlt, FaUtensils, FaMotorcycle } from 'react-icons/fa';
 import axios from "axios";
-import Pizza from "./components/Pizza";
+import Pizza from "./components/pages/Pizza";
 import Topo from "./components/Topo";
 import Rodape from "./components/Rodape";
-import Home from "./components/Home";
-import NotFound from "./components/NotFound";
-import Carrinho from "./components/Carrinho";
-import Pagamento from "./components/Pagamento";
-import Cozinha from "./components/Cozinha";
-import Entregas from "./components/Entregas";
+import Home from "./components/pages/Home";
+import NotFound from "./components/pages/NotFound";
+import Carrinho from "./components/pages/Carrinho";
+import Cozinha from "./components/pages/Cozinha";
+import Entregas from "./components/pages/Entregas";
 import Login from "./components/login/Login";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { CarrinhoProvider, useCarrinho } from "./context/CarrinhoContext";
@@ -163,15 +162,6 @@ const AppContent = () => {
               <PublicRoute>
                 <Login />
               </PublicRoute>
-            } />
-            
-            <Route path="/pagamento" element={
-              <ProtectedRoute>
-                <Pagamento 
-                  total={totalPreco} 
-                  clearCarrinho={clearCarrinho}
-                />
-              </ProtectedRoute>
             } />
             
             <Route path="/carrinho" element={

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { FaShoppingCart, FaStar, FaFire } from 'react-icons/fa';
-import { useCarrinho } from '../context/CarrinhoContext';
+import { useCarrinho } from '../../context/CarrinhoContext';
 import './Home.css';
 
 const Home = ({ pizzas }) => {

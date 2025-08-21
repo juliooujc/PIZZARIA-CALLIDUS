@@ -10,15 +10,15 @@ const mockLogin = (email, password) => {
       const users = [
         { 
           id: 1, 
-          email: 'usuario@email.com', 
-          password: 'senha123', 
-          name: 'Usuário Teste'
+          email: 'maelle@gmail.com', 
+          password: 'alicia', 
+          name: 'Malle'
         },
         { 
           id: 2, 
-          email: 'admin@email.com', 
-          password: 'admin123', 
-          name: 'Administrador'
+          email: 'admin_aline@gmail.com', 
+          password: 'artificie', 
+          name: 'Administradora Artífice'
         }
       ];
 
@@ -78,7 +78,7 @@ export const AuthProvider = ({ children }) => {
         };
         
         localStorage.setItem('token', response.token);
-        localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('user/', JSON.stringify(userData));
         
         setUser(userData);
         return { success: true };

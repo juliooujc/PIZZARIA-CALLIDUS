@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaTrash, FaShoppingCart, FaCreditCard, FaSpinner, FaPlus, FaMinus, FaArrowLeft, FaUtensils, FaHome } from 'react-icons/fa';
-import { useCarrinho } from '../context/CarrinhoContext';
+import { useCarrinho } from '../../context/CarrinhoContext';
 import './Carrinho.css';
 
 // Componente reutilizável de item da comanda

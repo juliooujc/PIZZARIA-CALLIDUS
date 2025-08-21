@@ -187,3 +187,18 @@
   color: #2c3e50;
   font-weight: 600;
 }
+.carrinho-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;                
+  font-size: 2rem;         
+  font-weight: 700;         
+  color: #000000;           
+  margin-bottom: 1.5rem;    
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1); 
+}
+
+.carrinho-title svg {
+  font-size: 1.8rem;        
+  color: #000000;           
+}

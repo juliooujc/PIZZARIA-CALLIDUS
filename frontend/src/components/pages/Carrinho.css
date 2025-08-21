@@ -143,12 +143,12 @@
 
 .mesa-input input,
 .endereco-fields input {
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 .mesa-input input::placeholder,
 .endereco-fields input::placeholder {
-  color: #6b7280;
+  color: #ffffff;
 }
 
 .entrega-option span {

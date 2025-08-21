@@ -20,19 +20,18 @@ const Navegacao = () => {
   return (
     <nav className="nav">
       <ul>
-        <li>
-          <Link to="/">
-            <FaHome /> Cardápio
-          </Link>
-        </li>
-        <li>
-          <Link to="/carrinho">
-            <FaShoppingCart /> Carrinho ({totalItens})
-          </Link>
-        </li>
-        
         {isAuthenticated && (
           <>
+            <li>
+              <Link to="/">
+                <FaHome /> Cardápio
+              </Link>
+            </li>
+            <li>
+              <Link to="/carrinho">
+                <FaShoppingCart /> Carrinho ({totalItens})
+              </Link>
+            </li>
             <li>
               <Link to="/cozinha">
                 <FaUtensils /> Cozinha

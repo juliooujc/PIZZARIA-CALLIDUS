@@ -53,7 +53,7 @@ const Pizza = ({ pizza }) => {
           onClick={() => navigate('/')}
           className="breadcrumb-btn"
         >
-          <FaArrowLeft /> Cardápio
+          Cardápio
         </button>
         <span>/</span>
         <span className="breadcrumb-current">{pizza.nome}</span>
@@ -72,7 +72,7 @@ const Pizza = ({ pizza }) => {
             />
             {isPremium && (
               <div className="premium-badge-large">
-                <FaStar /> Premium
+                 Premium
               </div>
             )}
           </div>
@@ -84,12 +84,12 @@ const Pizza = ({ pizza }) => {
             <div className="pizza-meta">
               {pizza.tempoPreparo && (
                 <span className="meta-item">
-                  <FaClock /> {pizza.tempoPreparo} min
+                  {pizza.tempoPreparo} min
                 </span>
               )}
               {pizza.peso && (
                 <span className="meta-item">
-                  <FaWeight /> {pizza.peso}
+                  {pizza.peso}
                 </span>
               )}
             </div>
@@ -100,12 +100,12 @@ const Pizza = ({ pizza }) => {
           </div>
 
           <div className='pizza-description-detailed'>
-            <h3>📖 Sobre esta pizza</h3>
+            <h3>Sobre esta pizza</h3>
             <p>{pizza.descricao}</p>
           </div>
 
           <div className='ingredients-section'>
-            <h3>🍅 Ingredientes</h3>
+            <h3>Ingredientes</h3>
             <div className='ingredients-grid'>
               {ingredientes.map((ingrediente, index) => (
                 <span key={index} className='ingredient-tag'>
@@ -116,7 +116,7 @@ const Pizza = ({ pizza }) => {
           </div>
 
           <div className='order-section'>
-            <h3>🛒 Faça seu pedido</h3>
+            <h3>Faça seu pedido</h3>
             
             <div className="quantity-selector">
               <label htmlFor="quantidade">Quantidade:</label>
@@ -155,29 +155,15 @@ const Pizza = ({ pizza }) => {
             >
               {added ? (
                 <>
-                  <FaShoppingCart /> ✅ Adicionado ao Carrinho!
+                  Adicionado ao Carrinho!
                 </>
               ) : (
                 <>
-                  <FaShoppingCart /> Adicionar {quantity} ao Carrinho
+                  Adicionar {quantity} ao Carrinho
                 </>
               )}
             </button>
           </div>
-
-          {pizza.informacoesNutricionais && (
-            <div className='nutritional-info'>
-              <h3>📊 Informações Nutricionais</h3>
-              <div className='nutrition-grid'>
-                {Object.entries(pizza.informacoesNutricionais).map(([key, value]) => (
-                  <div key={key} className='nutrition-item'>
-                    <span className='nutrition-label'>{key}:</span>
-                    <span className='nutrition-value'>{value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </main>

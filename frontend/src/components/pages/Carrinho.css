@@ -1,22 +1,26 @@
-/* Estilos existentes mantidos e novos adicionados */
+
 
 .comanda-item {
   display: flex;
   align-items: center;
   padding: 1rem;
-  border: 1px solid #e1e1e1;
+  border: 1px solid #1707f0;
   border-radius: 8px;
   margin-bottom: 1rem;
+<<<<<<< HEAD
   background: rgb(36, 33, 33);
+=======
+  background: rgb(255, 253, 253);
+>>>>>>> 92a1b7f57e6bdc65d41b7c7f66f6ca09e71e69eb
   transition: box-shadow 0.2s;
 }
 
 .comanda-item:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(9, 106, 162, 0.1);
 }
 
 .entrega-section {
-  background: white;
+  background: rgb(255, 255, 255);
   padding: 1.5rem;
   border-radius: 8px;
   margin-bottom: 1.5rem;
@@ -78,7 +82,7 @@
 
 .comanda-items h3 {
   margin-bottom: 1rem;
-  color: #333;
+  color: #e4e4e4;
 }
 
 .enviar-cozinha-btn {
@@ -110,7 +114,7 @@
   margin-left: 1rem;
 }
 
-/* Responsividade */
+
 @media (max-width: 768px) {
   .entrega-options {
     flex-direction: column;
@@ -129,4 +133,72 @@
   .item-details {
     margin: 1rem 0;
   }
+}
+
+
+
+.entrega-section,
+.comanda-item,
+.comanda-items {
+  color: #2c3e50 !important;
+}
+
+.entrega-section h3,
+.entrega-section label,
+.mesa-input label,
+.endereco-form label {
+  color: #2c3e50 !important;
+}
+
+.mesa-input input,
+.endereco-fields input {
+  color: #2c3e50;
+}
+
+.mesa-input input::placeholder,
+.endereco-fields input::placeholder {
+  color: #6b7280;
+}
+
+.entrega-option span {
+  color: #6f0bd9; 
+  font-weight: 600;
+}
+
+.entrega-option:hover {
+  border-color: #1f0574;
+}
+
+.entrega-option input[type="radio"]:checked + span {
+  color: #291696;
+  font-weight: 700;
+}
+
+
+.enviar-cozinha-btn {
+  color: #2d0350;
+}
+
+.enviar-cozinha-btn:hover:not(:disabled) {
+  filter: brightness(0.97);
+}
+
+
+
+
+.comanda-item h4 {
+  color: #e53935;   
+  font-weight: 700;
+}
+
+
+.comanda-item p {
+  color: #2c3e50;   
+  font-size: 0.95rem;
+}
+
+
+.comanda-item span {
+  color: #2c3e50;
+  font-weight: 600;
 }
